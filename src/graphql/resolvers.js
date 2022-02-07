@@ -1,6 +1,13 @@
+const { User } = require("../schema/schemas");
+
 // Provide resolver functions for your schema fields
 const resolvers = {
   Query: {
-    hello: () => "Hello world!",
+    users: () => User.find(),
   },
 };
+
+
+module.exports = {
+  resolvers
+}
