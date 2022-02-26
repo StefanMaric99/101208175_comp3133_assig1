@@ -35,7 +35,7 @@
   "start_date": "01-25-2022",
   "end_date": "01-30-2022",
   "username": "pritamworld",
-  // "user_id": "", TODO
-  // "hotel_id": "" TODO
+  "user_id": "", 
+  "hotel_id": "" 
 }
 ```

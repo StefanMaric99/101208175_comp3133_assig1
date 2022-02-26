@@ -15,7 +15,7 @@ const typeDefs = gql`
   }
 
   input LoginInput {
-    email: String!
+    username: String!
     password: String!
   }
 
@@ -33,10 +33,11 @@ const typeDefs = gql`
 
   type Booking {
     id: ID!
-    user: User!
-    hotel: Hotel!
-    start: String!
-    end: String!
+    user: ID!
+    hotel: ID!
+    date: String!
+    booking_start: String!
+    booking_end: String!
     createdAt: String!
     updatedAt: String!
   }
@@ -44,13 +45,14 @@ const typeDefs = gql`
   input BookingInput {
     user: ID!
     hotel: ID!
-    start: String!
-    end: String!
+    date: String!
+    booking_start: String!
+    booking_end: String!
   }
 
   type Query {
     users: [User]
-    user(email: String!): User
+    user(username: String!): User
     hotels: [Hotel]
     hotel(id: ID!): Hotel
     hotelByName(name: String!): Hotel
@@ -58,10 +60,11 @@ const typeDefs = gql`
     bookings: [Booking]
     userBooking(userId: ID!): [Booking]
     hotelBooking(hotelId: ID!): [Booking]
-  } 
+  }
 
   type Mutation {
-    login(loginInput: LoginInput!): User
+    login(loginInput: LoginInput!): Boolean,
+    logout: Boolean
   } 
 `;
 

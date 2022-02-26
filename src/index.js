@@ -6,7 +6,7 @@ const { dbConnect } = require("./config/mongo");
 const { apolloConfig } = require("./graphql");
 
 const app = express();
-const httpserver = http.createServer(app);
+// const httpserver = http.createServer(app);
 
 // Middleware
 app.use(express.urlencoded({extended: true}));

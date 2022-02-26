@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const {Schema} = mongoose;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -14,7 +15,7 @@ const UserSchema = new mongoose.Schema(
 
 const HotelSchema = new mongoose.Schema(
   {
-    title: { type: String, required: true },
+    name: { type: String, required: true },
     description: { type: String, required: true },
     street: { type: String, required: true },
     city: { type: String, required: true },
@@ -30,7 +31,8 @@ const BookingSchema = new mongoose.Schema(
     date: { type: String, required: true },
     booking_start: { type: Date, required: true },
     booking_end: { type: Date, required: true },
-    username: { type: String, required: true },
+    user: { type: Schema.Types.ObjectId, ref: 'User' },
+    hotel: { type: Schema.Types.ObjectId, ref: 'Hotel' },
   },
   { timestamps: true }
 );
