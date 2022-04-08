@@ -4,13 +4,14 @@ const http = require("http");
 const { ApolloServer } = require("apollo-server-express");
 const { dbConnect } = require("./config/mongo");
 const { apolloConfig } = require("./graphql");
+const mongoose = require("mongoose");
 
 const app = express();
 // const httpserver = http.createServer(app);
 
 // Middleware
-app.use(express.urlencoded({extended: true}));
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use("/seeding", require("./routes/seeding"));
 
 // Graphql
@@ -20,14 +21,15 @@ const startServer = async () => {
   apolloServer.applyMiddleware({ app });
 };
 
-// Mongo & Mongoose
+const PORT = process.env.PORT || 4000;
+
 dbConnect()
   .then(() => {
     startServer();
-    app.listen({ port: 4000 }, () => {
+    app.listen(PORT, () => {
       console.log(`🚀 Server ready at http://localhost:4000`);
     });
-  })  
+  })
   .catch((err) => {
-    console.log("mongo db connection failed", err)
+    console.log("mongo db connection failed", err);
   });

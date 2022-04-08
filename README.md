@@ -1,41 +1,15 @@
-
-## TODO
-  1. encrypt user password
-
-### User
-```json
-{
-  "firstName": "John",
-  "lastName": "Doe",
-  "username": "JohnDoe123",
-  "password": "Password",
-  "email": "john@gmail.com",
-  "type": "admin"
-}
+```bash
+docker run -p 27017:27017 --name mongodb -d mongo
 ```
 
-### Hotel
-```json
-{
-  "title": "Sea face home for rent",
-  "description": "max 1000-character description",
-  "street": "171 Young Street",
-  "city": "Toronto",
-  "postal_code": "M1X0Y5",
-  "price": 150.00,
-  "email": "contact@hilton.com",
-}
 ```
-
-### Booking
-```json
 {
-  "id": "B001",
-  "booking_date": "01-24-2022",
-  "start_date": "01-25-2022",
-  "end_date": "01-30-2022",
-  "username": "pritamworld",
-  "user_id": "", 
-  "hotel_id": "" 
+  "userInput": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john@text.com",
+    "password": "password",
+    "username": "test"
+  }
 }
 ```

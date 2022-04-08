@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const UserSchema = new mongoose.Schema(
   {
@@ -31,8 +31,8 @@ const BookingSchema = new mongoose.Schema(
     date: { type: String, required: true },
     booking_start: { type: Date, required: true },
     booking_end: { type: Date, required: true },
-    user: { type: Schema.Types.ObjectId, ref: 'User' },
-    hotel: { type: Schema.Types.ObjectId, ref: 'Hotel' },
+    user: { type: Schema.Types.ObjectId, ref: "User" },
+    hotel: { type: Schema.Types.ObjectId, ref: "Hotel" },
   },
   { timestamps: true }
 );
