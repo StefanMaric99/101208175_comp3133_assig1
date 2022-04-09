@@ -19,8 +19,13 @@ const resolvers = {
       return true;
     },
     createHotel: async (_, { hotelInput }) => {
-      const user = new Hotel(hotelInput);
-      user.save();
+      const hotel = new Hotel(hotelInput);
+      hotel.save();
+      return true;
+    },
+    createBooking: async (_, { bookingInput }) => {
+      const booking = new Hotel(bookingInput);
+      booking.save();
       return true;
     },
     login: async (_, { loginInput: { username, password } }, context) => {

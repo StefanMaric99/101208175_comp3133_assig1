@@ -83,6 +83,7 @@ const typeDefs = gql`
   type Mutation {
     createUser(userInput: UserInput!): Boolean
     createHotel(hotelInput: HotelInput!): Boolean
+    createBooking(bookingInput: BookingInput!): Boolean
     login(loginInput: LoginInput!): Boolean
     logout: Boolean
   }
