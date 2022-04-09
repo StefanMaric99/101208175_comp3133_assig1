@@ -18,6 +18,11 @@ const resolvers = {
       user.save();
       return true;
     },
+    createHotel: async (_, { hotelInput }) => {
+      const user = new Hotel(hotelInput);
+      user.save();
+      return true;
+    },
     login: async (_, { loginInput: { username, password } }, context) => {
       console.log(`New login attemp user '${username}' password '${password}'`);
 

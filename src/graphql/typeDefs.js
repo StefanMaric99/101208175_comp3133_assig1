@@ -21,6 +21,7 @@ const typeDefs = gql`
   type Hotel {
     id: ID
     name: String
+    description: String
     street: String
     city: String
     postalCode: String
@@ -48,6 +49,16 @@ const typeDefs = gql`
     email: String!
     password: String!
   }
+  
+  input HotelInput {
+    name: String!
+    description: String!
+    street: String!
+    city: String!
+    postalCode: String!
+    price: Float!
+    email: String!
+  }
 
   input BookingInput {
     user: ID!
@@ -71,6 +82,7 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(userInput: UserInput!): Boolean
+    createHotel(hotelInput: HotelInput!): Boolean
     login(loginInput: LoginInput!): Boolean
     logout: Boolean
   }

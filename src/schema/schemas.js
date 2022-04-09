@@ -19,7 +19,7 @@ const HotelSchema = new mongoose.Schema(
     description: { type: String, required: true },
     street: { type: String, required: true },
     city: { type: String, required: true },
-    postal_code: { type: String, required: true },
+    postalCode: { type: String, required: true },
     price: { type: Number, required: true },
     email: { type: String, required: true },
   },
