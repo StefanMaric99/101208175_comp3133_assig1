@@ -4,6 +4,7 @@ const resolvers = {
   Query: {
     users: async () => await User.find(),
     bookings: async () => await Booking.find(),
+    hotels: async () => await Hotel.find(),
     hotelByName: async (_, { name }) => await Hotel.findOne({ name }),
     hotelByCity: async (_, { city }) => await Hotel.findOne({ city }),
     userBooking: async (_, { userId }) =>
@@ -24,7 +25,7 @@ const resolvers = {
       return true;
     },
     createBooking: async (_, { bookingInput }) => {
-      const booking = new Hotel(bookingInput);
+      const booking = new Booking(bookingInput);
       booking.save();
       return true;
     },

@@ -13,7 +13,6 @@ const options = {
   port: process.env.PORT || 4000
 }
 
-
 dbConnect()
   .then(() => {
     server.start(options, ({ port }) => {
