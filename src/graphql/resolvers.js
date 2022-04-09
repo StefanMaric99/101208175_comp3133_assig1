@@ -27,7 +27,7 @@ const resolvers = {
     createBooking: async (_, { bookingInput }) => {
       const booking = new Booking(bookingInput);
       booking.save();
-      return true;
+      return true
     },
     login: async (_, { loginInput: { username, password } }, context) => {
       console.log(`New login attemp user '${username}' password '${password}'`);
