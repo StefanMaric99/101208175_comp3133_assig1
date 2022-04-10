@@ -1,4 +1,3 @@
-// const { createServer } = require("@graphql-yoga/node");
 const { GraphQLServer } = require('graphql-yoga');
 const { dbConnect } = require("./config/mongo");
 const { resolvers } = require("./graphql/resolvers");

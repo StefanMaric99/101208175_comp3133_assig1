@@ -37,8 +37,19 @@ const BookingSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
+const AuthSchema = new mongoose.Schema(
+  {
+    userId: { type: String, required: true },
+    username: { type: String, required: true },
+    type: { type: String, required: true },
+    email: { type: String, required: true },
+  },
+  { timestamps: true }
+);
+
 module.exports = {
   User: mongoose.model("user", UserSchema),
   Hotel: mongoose.model("hotel", HotelSchema),
   Booking: mongoose.model("booking", BookingSchema),
+  Auth: mongoose.model("auth", AuthSchema),
 };

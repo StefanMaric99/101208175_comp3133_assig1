@@ -1,8 +1,25 @@
-const { User, Hotel, Booking } = require("../schema/schemas");
+const { User, Hotel, Booking, Auth } = require("../schema/schemas");
+
+const currentUser = async () => {
+  let auth = await Auth.find();
+  return auth[0];
+}
 
 const resolvers = {
   Query: {
-    users: async () => await User.find(),
+    users: async () => {
+      let auth = await Auth.find();
+      if (auth.length === 0) return null;
+
+      auth = auth[0]
+      console.log(auth['type'])
+      if (auth['type'] === "admin") {
+        return await User.find()
+      } else {
+        let user = await User.findById(auth['userId'])
+        return [user];
+      }
+    },
     bookings: async () => await Booking.find(),
     hotels: async () => await Hotel.find(),
     hotelByName: async (_, { name }) => await Hotel.findOne({ name }),
@@ -29,29 +46,36 @@ const resolvers = {
       booking.save();
       return true
     },
-    login: async (_, { loginInput: { username, password } }, context) => {
+    login: async (_, { loginInput: { username, password } }) => {
       console.log(`New login attemp user '${username}' password '${password}'`);
 
-      User.findOne({ username })
+      return User.findOne({ username })
         .then((user) => {
           if (password === user.password) {
-            context["auth"].isAuth = true;
-            context["auth"].user = user;
-            console.log("login successed", context["auth"]);
-            return true;
+            const { _id, username, type, email } = user;
+            const authInput = { userId: _id, username, type, email };
+            const auth = new Auth(authInput);
+            auth.save();
+            return true
           } else {
             console.log("wrong password");
-            return false;
+            return false
           }
         })
         .catch((err) => console.log(err));
-      return true;
+      // return true;
     },
-    logout: async (_, __, context) => {
-      console.log({ context });
-      context["auth"].isAuth = false;
-      context["auth"].user = null;
-      return false;
+    logout: async () => {
+      const auth = await currentUser();
+      Auth.deleteMany({ userId: auth['userId'] })
+        .then(res => {
+          console.log(res);
+          return true;
+        })
+        .catch(err => {
+          console.log(err)
+          return false;
+        })
     },
   },
 };
